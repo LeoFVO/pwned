@@ -1,0 +1,55 @@
+version: 0.6
+
+index_id: leaks
+index_uri: s3://leaks/indexes/leaks
+
+doc_mapping:
+  mode: dynamic # <--- The mode attribute (strict/dynamic/lenient)
+  # If mode is set to strict on the other hand, documents containing fields that are not defined in the mapping will be entirely discarded.
+  # In lenient mode, the fields that do not appear in the document mapping will simply be ignored.
+  # When set to dynamic, all extra fields will actually be mapped using a catch-all configuration.
+  field_mappings:
+    - name: source # Source of the leak
+      type: text
+    - name: username # Username of the user
+      type: text
+    - name: firstname # Firstname of the user
+      type: text
+    - name: lastname # Lastname of the user
+      type: text
+    - name: ip # IP of the user
+      type: text
+    - name: email # Email of the user
+      type: text
+    - name: phone # Phone number of the user
+      type: text
+    - name: password # Password of the user
+      type: text
+    - name: password_hash # Hash of the password of the user
+      type: text
+    - name: gender # Gender of the user
+      type: text
+    - name: adress # Adress of the user
+      type: text
+    - name: birthday # Birthday of the user
+      type: text
+    - name: country # Country of the user
+      type: text
+    - name: city # City of the user
+      type: text
+    - name: created # Timestamp of the account creation
+      type: text
+    - name: updated # Timestamp of the account creation
+      type: text
+    - name: marital_status # Marital status of the user
+      type: text
+    - name: title # Job title of the user
+      type: text
+    - name: linked_website # Website linked to the user account leak
+      type: text
+
+search_settings:
+  default_search_fields: [email, username]
+
+indexing_settings:
+  commit_timeout_secs: 5 # <--- Your document will be searchable ~5 seconds after you ingest them.
